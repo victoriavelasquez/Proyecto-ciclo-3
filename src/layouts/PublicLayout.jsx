@@ -2,15 +2,13 @@ import Footer from 'components/Footer';
 import Navbar from 'components/Navbar';
 import React from 'react'
 
-const PublicLayout = ({children}) => {
+const PublicLayout = ({ children }) => {
     return (
-        <div className= 'bg-red-400'>
-            <Navbar/>
-            <main> {children}
-
-            </main>
-            <Footer/>
-        </div>
+      <div className='display:flex: justify-content: space-between h-screen'>
+        <Navbar />
+        <main className='h-full overflow-y-scroll bg-blue-400'>{children}</main>
+        <Footer />
+      </div>
     )
 }
 

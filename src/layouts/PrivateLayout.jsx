@@ -1,10 +1,14 @@
 import React from 'react'
+import Sidebar from 'components/Sidebar';
 
-const PrivateLayout = () => {
+const PrivateLayout = ({children}) => {
     return (
-        <div>
-            PrivateLayout
-            </div>
+        <div className='display:flex height:100px'>
+            <Sidebar/>
+           <main className=''>
+            {children}
+            </main>
+        </div>
     )
 }
 
