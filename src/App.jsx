@@ -12,6 +12,7 @@ import Ropa from 'pages/admin/Ropa';
 
 function App() {
   return (
+    <div className='App'>
     <Router>
       <Switch>
         <Route path= {['/admin','/admin/ropa','/admin/clientes']}>
@@ -52,6 +53,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
+    </div>
   );
 }
 
