@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import 'styles/styles.css';
-import PrivateLayout from 'layouts/PrivateLayout';
-import PublicLayout from 'layouts/PublicLayout';
-import AuthLayout from 'layouts/AuthLayout';
-import Admin from 'pages/admin/Index';
-import Registro from 'pages/auth/Registro';
-import Login from 'pages/auth/Login';
-import Index from 'pages/Index';
-import Ropa from 'pages/admin/Ropa';
-import Clientes from 'pages/admin/Clientes'
+import './styles/styles.css';
+import PrivateLayout from './layouts/PrivateLayout';
+import PublicLayout from './layouts/PublicLayout';
+import AuthLayout from './layouts/AuthLayout';
+import Admin from './pages/admin/Index';
+import Registro from './pages/auth/Registro';
+import Login from './pages/auth/Login';
+import Index from './pages/admin/Index';
+import Ropa from './pages/admin/Ropa';
+import Clientes from './pages/admin/Clientes'
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
           </PrivateLayout>
         </Route>
         <Route path={['/login','/registro']}>
-          <AuthLayout>
+          <AuthLayout />
             <Switch>
               <Route path='/login'>
                 <Login />
@@ -40,7 +40,7 @@ function App() {
                 <Registro />
               </Route>
             </Switch>
-          </AuthLayout>
+         
         </Route>
         <Route path={['/']}>
            <PublicLayout>
