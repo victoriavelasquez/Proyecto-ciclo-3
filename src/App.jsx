@@ -8,7 +8,7 @@ import Registro from 'pages/auth/Registro';
 import Login from 'pages/auth/Login';
 import Index from 'pages/Index';
 import Ropa from 'pages/admin/Ropa';
-
+import Clientes from 'pages/admin/Clientes'
 
 function App() {
   return (
