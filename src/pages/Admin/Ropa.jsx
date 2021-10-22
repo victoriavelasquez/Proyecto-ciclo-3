@@ -31,11 +31,12 @@ const ropabackend=[
 
 
 ];
-const Tallas=({tipoPrenda})=>{
-    console.log(tipoPrenda)
-    const [tipo, setTipo]=useState('');
+const Tallas=({tipoPrenda,setPrenda,prenda})=>{
+    //console.log(tipoPrenda)
+    const [tipo, setTipo]=useState("");
     const [tallaPantalones, setTallaPantalones]=useState([28,30,32,34]);
     const [tallaCamisetas, setTallaCamisetas]=useState(['s','m','l','xl','xxl']);
+    const [talla,setTalla]=useState("");
 
     useEffect(()=>{
         //if (!tipo){
@@ -43,14 +44,63 @@ const Tallas=({tipoPrenda})=>{
         //}
     },[tipoPrenda]);
 
+    const handleTalla=(event)=>{
+        setTalla(event.target.value)
+        setPrenda({
+            ...prenda,
+            [event.target.name]: event.target.value
+        })
+
+    }
+    
+    
+
     return (
-        <select name="tallas">
+        <select onChange={handleTalla} name="talla" value={talla}>
+             <option value="">Seleccione...</option>
             {  tipo==='pantalon' 
                   ?  tallaPantalones.map((talla,index)=>(
                         <option key={index} value={talla} >{talla}</option>
                      ))
                   :  tallaCamisetas.map((talla,index)=>(
                         <option key={index} value={talla} >{talla}</option>
+                     ))
+            }
+            {/* <option value="value1">Value 1</option>
+            <option value="value2" selected>Value 2</option>
+            <option value="value3">Value 3</option> */}
+        </select>
+    )
+}
+const Marcas=({tipoPrenda,prenda,setPrenda})=>{
+    console.log(tipoPrenda)
+    const [tipo, setTipo]=useState('');
+    const [marcaPantalones, setMarcaPantalones]=useState(['Adidas','Nike','Reebook','Arturo Calle']);
+    const [marcaCamisetas, setMarcaCamisetas]=useState(['Adidas','Nike','Reebook','Americanino','Sara']);
+
+    useEffect(()=>{
+        //if (!tipo){
+            setTipo(tipoPrenda)
+        //}
+    },[tipoPrenda]);
+
+    const handleMarca=(event)=>{
+        setPrenda({
+            ...prenda,
+            [event.target.name]: event.target.value
+        })
+
+    }
+
+    return (
+        <select name="marca"  onChange={handleMarca}>
+             <option value="">Seleccione...</option>
+            {  tipo==='pantalon' 
+                  ?  marcaPantalones.map((marca,index)=>(
+                        <option key={index} value={marca} >{marca}</option>
+                     ))
+                  :  marcaCamisetas.map((marca,index)=>(
+                        <option key={index} value={marca} >{marca}</option>
                      ))
             }
             {/* <option value="value1">Value 1</option>
@@ -131,10 +181,19 @@ const TablaRopa= ({ listaRopa })=> {
 };
 
 const FormularioCreacionRopa = ()=>{
-    const [tipoPrenda, setTipoPrenda]=  useState('');
+    const [prenda, setPrenda]=  useState({
+        tipo:null,
+        marca:null,
+        talla:null,
+        precio:0
+    });
+    const {tipo,precio}=prenda;
 
     const handleTipoPrenda=(event)=>{
-         setTipoPrenda(event.target.value)
+        setPrenda({
+            ...prenda,
+            [event.target.name]: event.target.value
+        })
         console.log(event.target.value)
 
     }
@@ -145,9 +204,9 @@ const FormularioCreacionRopa = ()=>{
         <form className='grid-template-columns:repeat'>
             <label htmlFor='tipoPrenda'>Tipo de Prenda</label>
             <select 
-                name="tipoPrenda" 
-                id="tipoPrenda"
-                value={tipoPrenda}
+                name="tipo" 
+                id="tipo"
+                value={tipo}
                 onChange={handleTipoPrenda}
             >
               <option value="">Seleccione...</option>
@@ -157,21 +216,12 @@ const FormularioCreacionRopa = ()=>{
             </select>
 
             <label htmlFor='marca'>Marca</label>
-            <select className='background-color:rgb(249,250,251) border-color: rgb(75,85,99) padding:2px border-radius:2px margin:2px' name='marca'>
- 
-                <option disabled>Seleccione una opción</option>
-                <option>Sara</option>
-                <option>Americanino</option>
-                <option>Chevignon</option>
-                <option>Guess</option>
-                <option>Adidas</option>
-                <option>Tommy Hilfierd</option>
-            </select>
-           
+            <Marcas tipoPrenda={tipo} setPrenda={setPrenda} prenda={prenda}/>           
            
             <label htmlFor='talla'>Talla</label>
-            <Tallas tipoPrenda={tipoPrenda}/>
-
+            <Tallas tipoPrenda={tipo} setPrenda={setPrenda} prenda={prenda}/>
+            <label htmlFor='precio'>Precio</label>
+            <input name="precio" id="precio" value={precio} onChange={handleTipoPrenda}/>
 
             <button type='button'className='grid-column:span2 background-color:rgb(249,250,251)border-color: rgb(75,85,99) padding:2px border-radius:2px margin:2px'>
                 Guardar Prenda 
