@@ -56,7 +56,7 @@ const Tallas=({tipoPrenda,setPrenda,prenda})=>{
     
 
     return (
-        <select onChange={handleTalla} name="talla" value={talla}>
+        <select className="campo" onChange={handleTalla} name="talla" value={talla}>
              <option value="">Seleccione...</option>
             {  tipo==='pantalon' 
                   ?  tallaPantalones.map((talla,index)=>(
@@ -93,7 +93,7 @@ const Marcas=({tipoPrenda,prenda,setPrenda})=>{
     }
 
     return (
-        <select name="marca"  onChange={handleMarca}>
+        <select className="campo" name="marca"  onChange={handleMarca}>
              <option value="">Seleccione...</option>
             {  tipo==='pantalon' 
                   ?  marcaPantalones.map((marca,index)=>(
@@ -136,11 +136,11 @@ const Ropa =( ) =>{
     }, [mostrarTabla]);
 
     return (
-        <div className='flex-direction:column align-items:flex-start padding:8px'>
+        <div className='ropa'>
             <div className=''>
-            <h2 className='justify-content:center'> Pagina de administracion de la ropa</h2>
+            <h2 className='ropa-titulo'> Pagina de administracion de la ropa</h2>
            
-            <button onClick={()=>{setMostrarTabla (!mostrarTabla);}} className={`text-white bg-${colorBoton}-500 p-5`}> {textoBoton}
+            <button onClick={()=>{setMostrarTabla (!mostrarTabla);}} className="btn-mostrar"> {textoBoton}
             </button>
 
             </div>
@@ -199,11 +199,11 @@ const FormularioCreacionRopa = ()=>{
     }
 
     return (
-    <div className='flex-direction:column align-items:flex-start'>
-        <h2 className='text-align:left front-size:24 px color:grey-800'>Crear Nueva Prenda</h2>
-        <form className='grid-template-columns:repeat'>
+    <div className='formulario-ropa'>
+        <h2 className='formulario-titulo'>Crear Nueva Prenda</h2>
+        <form className='formulario'>
             <label htmlFor='tipoPrenda'>Tipo de Prenda</label>
-            <select 
+            <select className="campo"
                 name="tipo" 
                 id="tipo"
                 value={tipo}
@@ -221,11 +221,12 @@ const FormularioCreacionRopa = ()=>{
             <label htmlFor='talla'>Talla</label>
             <Tallas tipoPrenda={tipo} setPrenda={setPrenda} prenda={prenda}/>
             <label htmlFor='precio'>Precio</label>
-            <input name="precio" id="precio" value={precio} onChange={handleTipoPrenda}/>
-
-            <button type='button'className='grid-column:span2 background-color:rgb(249,250,251)border-color: rgb(75,85,99) padding:2px border-radius:2px margin:2px'>
+            <input className="campo" name="precio" id="precio" value={precio} onChange={handleTipoPrenda}/>
+            <div>
+            <button type='button'className='btn-guardar'>
                 Guardar Prenda 
                 </button>
+            </div>
 
 
         </form>
